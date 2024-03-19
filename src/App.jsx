@@ -58,6 +58,10 @@ function App() {
     setTodo(prevTodo => prevTodo.filter((item) => item.id != id));
   };
 
+  const editTodo = (id) => {
+    
+  }
+
   useEffect(() => {
     const getTodo = JSON.parse(localStorage.getItem("todo"));
     console.log(getTodo);
@@ -75,7 +79,7 @@ function App() {
   
 
   return (
-    <TodoProvider value={{ todo, addTodo, deleteTodo, toggleCompleted }}>
+    <TodoProvider value={{ todo, addTodo, deleteTodo, toggleCompleted, editTodo }}>
       <div className="relative w-screen h-screen m-0 bg-gradient-to-b from-blue-800 to-blue-100">
         <TodoLForm />
         <div className="flex flex-col items-center justify-start w-2/3 p-1 mx-auto space-y-3 text-xl text-white rounded-lg md:w-2/4">
