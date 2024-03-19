@@ -76,9 +76,9 @@ function App() {
 
   return (
     <TodoProvider value={{ todo, addTodo, deleteTodo, toggleCompleted }}>
-      <div className="m-0 relative h-screen w-screen bg-gradient-to-b from-blue-800 to-blue-100">
+      <div className="relative w-screen h-screen m-0 bg-gradient-to-b from-blue-800 to-blue-100">
         <TodoLForm />
-        <div className="w-2/3 items-center text-white rounded-lg mx-auto p-1 text-xl md:w-2/4 flex flex-col justify-start space-y-3">
+        <div className="flex flex-col items-center justify-start w-2/3 p-1 mx-auto space-y-3 text-xl text-white rounded-lg md:w-2/4">
           {todo &&
             todo.map((todos, index) => (
               <motion.div
@@ -93,10 +93,10 @@ function App() {
                   left: 0,
                   bottom: 0,
                   transition: {
-                    stiffness: 500
-                  }
+                    stiffness: 500,
+                  },
                 }}
-                className="p-1 ml-5 rounded bg-slate-500 w-3/4 texl-left flex justify-between"
+                className="flex justify-between w-3/4 p-1 ml-5 rounded bg-slate-500 texl-left"
                 key={index}
               >
                 <input
@@ -107,23 +107,26 @@ function App() {
                 />
 
                 <motion.p
-                transition={{
-                  duration: 2
-                }}
-                  className={`text-justify p-2 "text-md text-sm md:text-xl capitalize text-white md:text-xl" ${
-                    todos.completed ? "line-through text-green-500" : ""
+                  transition={{
+                    duration: 2,
+                  }}
+                  className={`text-justify p-2 "text-md text-sm md:text-xl capitalize block text-white md:text-xl" ${
+                    todos.completed
+                      ? "line-through text-green-500 transition-all duration-100"
+                      : ""
                   }`}
+                  onClick={() => toggleCompleted(todos.id)}
                 >
                   {todos.title}
                 </motion.p>
                 <motion.button
-                whileHover={{
-                  color: "white",
-                }}
-                  className="text-red-600 block"
+                  whileHover={{
+                    color: "white",
+                  }}
+                  className="block text-red-600"
                   onClick={() => deleteTodo(todos.id)}
                 >
-                  <MdDelete  />
+                  <MdDelete />
                 </motion.button>
               </motion.div>
             ))}

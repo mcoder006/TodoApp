@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { useTodo } from '../../../public/store/Context';
 import { motion } from "framer-motion"
 
@@ -35,11 +35,11 @@ const TodoLForm = () => {
     <motion.div 
     variants={formVarients}
     initial="initial" animate="animate" 
-    className='md:container w-3/4 p-3 text-white rounded-lg mx-auto pt-14'>
-        <h1 className='text-2xl text-center p-3 md:text-3xl mb-3'>Todo App</h1>
+    className='w-3/4 p-3 mx-auto text-white rounded-lg md:container pt-14'>
+        <h1 className='p-3 mb-3 text-2xl text-center md:text-3xl'>Todo App</h1>
         <form onSubmit={handleSubmit} className='flex items-center justify-center'>
 
-            <textarea type="text" placeholder='Write Your Todo' className='p-2 placeholder:text-slate-400 rounded-l-md outline-none text-black font-semibold tracking-wide w-2/3 lg:w-1/2 resize-none' value={todoForm} autoFocus
+            <textarea type="text" placeholder='Write Your Todo' className='w-2/3 p-2 font-semibold tracking-wide text-black outline-none resize-none placeholder:text-slate-400 rounded-l-md lg:w-1/2' value={todoForm} autoFocus
             onChange={(e) => setTodoForm(e.target.value)}
             required 
             minLength="5"
@@ -47,11 +47,11 @@ const TodoLForm = () => {
             maxLength="500"
             />
 
-            <input type="submit" value="Add Todo" className='bg-green-500 p-2 rounded-r-md '
+            <input type="submit" value="Add Todo" className='p-2 bg-green-500 rounded-r-md '
             />
         </form>
     </motion.div>
   )
 }
 
-export default TodoLForm
+export default memo(TodoLForm)
